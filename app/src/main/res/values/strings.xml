@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SportScroller</string>
+    <string name="unknown_error">Some error occurred during network call</string>
+
+</resources>
