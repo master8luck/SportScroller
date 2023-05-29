@@ -4,11 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class Event(
     @SerializedName("i")
-    private val id: String,
+    val id: String,
     @SerializedName("si")
-    private val sportId: String,
+    val sportId: String,
     @SerializedName("d")
-    private val name: String,
+    val name: String,
     @SerializedName("tt")
-    private val time: Long,
+    val time: Long,
+    var isFavorite: Boolean = false
 )

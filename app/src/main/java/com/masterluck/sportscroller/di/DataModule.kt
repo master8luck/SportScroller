@@ -17,7 +17,7 @@ object DataModule {
     @Singleton
     fun provideRetrofit(): Retrofit =
         Retrofit.Builder()
-            .baseUrl("http://62a054d8202ceef7086aed64.mockapi.io/")
+            .baseUrl("https://62a054d8202ceef7086aed64.mockapi.io/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

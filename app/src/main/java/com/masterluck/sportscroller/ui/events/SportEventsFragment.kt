@@ -10,16 +10,16 @@ import androidx.fragment.app.viewModels
 import com.masterluck.sportscroller.databinding.FragmentEventsBinding
 import com.masterluck.sportscroller.model.EventsResponseState
 import com.masterluck.sportscroller.model.data.Sport
-import com.masterluck.sportscroller.viewmodel.EventsViewModel
+import com.masterluck.sportscroller.viewmodel.SportEventsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EventsFragment : Fragment() {
+class SportEventsFragment : Fragment() {
 
     private lateinit var binding: FragmentEventsBinding
-    private val viewModel: EventsViewModel by viewModels()
+    private val viewModel: SportEventsViewModel by viewModels()
 
-    private lateinit var adapter: EventsAdapter
+    private lateinit var adapter: SportsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class EventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = EventsAdapter(emptyList())
+        adapter = SportsAdapter(emptyList())
         binding.rvSports.adapter = adapter
 
         viewModel.eventsLiveData.observe(viewLifecycleOwner) { response ->

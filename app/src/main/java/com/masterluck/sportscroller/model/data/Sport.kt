@@ -4,9 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class Sport(
     @SerializedName("i")
-    private val id: String,
+    val id: String,
     @SerializedName("d")
-    private val name: String,
+    val name: String,
     @SerializedName("e")
-    private val events: List<Event>,
+    val events: MutableList<Event>,
+    var isCollapsed: Boolean = false
 )

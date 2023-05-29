@@ -34,6 +34,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    kotlin {
+        jvmToolchain(8)
+    }
     namespace 'com.masterluck.sportscroller'
 }
 

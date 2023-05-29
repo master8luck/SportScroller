@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">SportScroller</string>
     <string name="unknown_error">Some error occurred during network call</string>
+    <string name="favorite_button_description">favorite button</string>
+    <string name="collapse_button_description">collapse button</string>
 
 </resources>
