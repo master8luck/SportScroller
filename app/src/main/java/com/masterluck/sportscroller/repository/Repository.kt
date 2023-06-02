@@ -3,7 +3,6 @@ package com.masterluck.sportscroller.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.masterluck.sportscroller.model.EventsResponseState
-import com.masterluck.sportscroller.model.data.Sport
 import com.masterluck.sportscroller.retrofit.EventsApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,6 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.net.ssl.SSLException
 
 @Singleton
 class Repository @Inject constructor(
@@ -28,13 +28,23 @@ class Repository @Inject constructor(
 
     private suspend fun getEventsFromApi() {
         _eventsLiveData.postValue(EventsResponseState.StateLoading)
-        val response = eventsApi.getEvents()
-        delay(1000)
-        if (response.isSuccessful && response.body() != null) {
-            _eventsLiveData.postValue(EventsResponseState.StateSuccess(response.body()!!))
-        } else {
-            _eventsLiveData.postValue(EventsResponseState.StateError(response.message()))
+
+        // try/catch block to prevent crashing on emulator due to SSLException
+        try {
+            val response = eventsApi.getEvents()
+
+            // for loading screen demonstration only
+            delay(1000)
+
+            if (response.isSuccessful && response.body() != null) {
+                _eventsLiveData.postValue(EventsResponseState.StateSuccess(response.body()!!))
+            } else {
+                _eventsLiveData.postValue(EventsResponseState.StateError(response.message()))
+            }
+        } catch (e: SSLException) {
+            _eventsLiveData.postValue(EventsResponseState.StateError(e.toString()))
         }
+
     }
 
 }
